@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Goblin Slayer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="game">
+        <h1>⚔️ Goblin Slayer</h1>
+    
+        <!-- COLONNE GAUCHE -->
+        <div id="colGauche">
+            <h2>🧝 Ton Héros</h2>
+            <p>⚔️ Dégâts par clic : <strong id="heroDmg">1</strong></p>
+            <p>🔄 Auto / sec : <strong id="heroAuto">0</strong></p>
+            <p>💀 Gobelins tués : <strong id="killCount">0</strong></p>
+        
+            <div id="saveBtns">
+                <button onclick="saveGame()">💾 Sauvegarder</button>
+                <button onclick="resetGame()">🗑️ Recommencer</button>
+                <button onclick="toggleMusique()" id="musiqueBtn">🔇 Musique : OFF</button>
+            </div>
+        
+            <div id="statsContainer">
+                <button onclick="toggleStats()" id="statsToggle">📊 Statistiques ▼</button>
+                <div id="statsPanel" class="shop-ferme">
+                    <p>⏱️ Temps de jeu : <strong id="statTemps">0s</strong></p>
+                    <p>💀 Total kills : <strong id="statKills">0</strong></p>
+                    <p>💰 Or total gagné : <strong id="statGoldTotal">0</strong></p>
+                    <p>👹 Boss vaincus : <strong id="statBoss">0</strong></p>
+                    <p>🔄 Prestiges : <strong id="statPrestige">0</strong></p>
+                    <p>⚔️ DPS total : <strong id="statDps">0</strong></p>
+                    <p>💎 Éclats totaux : <strong id="statEclats">0</strong></p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- COLONNE CENTRE -->
+        <div id="colCentre">
+            <h2>⚔️ Combat</h2>
+            <div id="arena" onclick="clickAttack()">
+                <img id="heroSprite" src="images/hero.png" alt="Héros">
+                <span id="vsText">⚔️</span>
+                <img id="enemySprite" src="images/goblin.png" alt="Gobelin">
+            </div>
+            <p id="enemyName">Gobelin Niveau 1</p>
+            <div id="hpBarContainer">
+                <div id="hpBarBg">
+                    <div id="hpBarFill"></div>
+                </div>
+                <p id="hpText">PV : <strong id="enemyHp">10</strong> / <strong id="enemyMaxHp">10</strong></p>
+            </div>
+        </div>
+    
+        <!-- COLONNE DROITE -->
+        <div id="colDroite">
+            <div id="shopContainer">
+                <div id="shopGold">💰 Or : <strong id="shopGoldCount">0</strong></div>
+                <button onclick="toggleBoutique()" id="shopToggle">🏪 Forgeron ▼</button>
+                <div id="shopList" class="shop-ferme"></div>
+            </div>
+            <div id="ameliorationContainer">
+                <button onclick="toggleAmelioration()" id="ameliorationToggle">⚔️ Améliorations ▼</button>
+                <div id="ameliorationList" class="shop-ferme"></div>
+            </div>
+            <!-- PRESTIGE -->
+            <div id="prestigeContainer">
+                <button onclick="togglePrestige()" id="prestigeToggle">💎 Prestige ▼</button>
+                <div id="prestigePanel" class="shop-ferme">
+                    <p>💎 Éclats : <strong id="prestigeEclats">0</strong></p>
+                    <p>Prochain prestige : +<strong id="prestigeGain">0</strong> 💎</p>
+                    <button onclick="prestige()" id="prestigeBtn">🔄 Lancer le Prestige</button>
+                    <hr style="border-color:#4a3a1a; margin: 8px 0;">
+                    <div id="prestigeList"></div>
+                </div>
+            </div>
+            <div id="craftingContainer">
+                <button onclick="toggleCrafting()" id="craftingToggle">⚗️ Atelier ▼</button>
+                <div id="craftingPanel" class="shop-ferme">
+                    <div id="craftingList"></div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    
+    <script src="game.js"></script>
+        
+</body>
+
+</html>

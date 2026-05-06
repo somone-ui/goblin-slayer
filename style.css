@@ -1,0 +1,601 @@
+/* =====================
+   BASE
+   ===================== */
+
+body {
+    background-color: #1a1408;
+    color: #d4c4a0;
+    font-family: Georgia, serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #e8b84b;
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: 2px solid #4a3a1a;
+    padding-bottom: 10px;
+    grid-column: 1 / -1;
+}
+
+h2 {
+    color: #e8b84b;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* =====================
+   LAYOUT
+   ===================== */
+
+#game {
+    display: grid;
+    grid-template-columns: 200px 1fr 270px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    align-items: start;
+}
+
+#colGauche {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 14px;
+    align-self: start;
+}
+
+#colCentre {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: start;
+    min-width: 0;
+}
+
+#colDroite {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-self: start;
+}
+
+#arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    background-color: #0e0b07;
+    border: 2px solid #4a3a1a;
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* =====================
+   BOUTONS
+   ===================== */
+
+button {
+    background-color: #5a0e0e;
+    color: #ffcccc;
+    border: 2px solid #c0392b;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    background-color: #7a1212;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* =====================
+   STATS
+   ===================== */
+
+p {
+    font-size: 1rem;
+    margin: 6px 0;
+    padding: 6px 10px;
+    background-color: #1a1408;
+    border-left: 3px solid #e8b84b;
+    border-radius: 4px;
+}
+
+strong {
+    color: #e8b84b;
+}
+
+#enemyName {
+    color: #e74c3c;
+    border-left: 3px solid #e74c3c;
+}
+
+#killCount {
+    color: #e74c3c;
+}
+
+#heroDmg {
+    color: #2ecc71;
+}
+
+/* =====================
+   ARENA
+   ===================== */
+
+#arena {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    background-color: #0e0b07;
+    border: 2px solid #4a3a1a;
+    border-radius: 10px;
+    padding: 30px;
+    overflow: hidden;
+    height: 120px;
+    width: 100%;
+    cursor: pointer;
+}
+
+#arena:active {
+    opacity: 0.85;
+}
+
+#vsText {
+    font-size: 2rem;
+}
+
+#heroSprite,
+#enemySprite {
+    width: 64px;
+    height: 64px;
+    object-fit: none;
+    object-position: 0px 0px;
+    image-rendering: pixelated;
+    transform: scale(1.5);
+    transform-origin: center;
+}
+
+/* =====================
+   BOUTIQUE
+   ===================== */
+
+.shop-ferme {
+    display: none !important;
+}
+
+.shop-ouvert {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+#shopContainer,
+#ameliorationContainer {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+#shopToggle {
+    width: 100%;
+    text-align: left;
+    background: #221b0c;
+    border: 1px solid #e8b84b;
+    color: #e8b84b;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+
+#ameliorationToggle {
+    width: 100%;
+    text-align: left;
+    background: #221b0c;
+    border: 1px solid #c0392b;
+    color: #c0392b;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0;
+}
+
+#shopList,
+#ameliorationList {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 4px;
+    max-height: 25vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#shopList button,
+#ameliorationList button {
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1408;
+    border-color: #4a3a1a;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+#shopList button:hover:not(:disabled),
+#ameliorationList button:hover:not(:disabled) {
+    border-color: #e8b84b;
+    background-color: #2a1f08;
+}
+
+#shopGold {
+    background: #1a1408;
+    border: 1px solid #4a3a1a;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-bottom: 8px;
+    color: #f1c40f;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+#colGauche,
+#colCentre,
+#colDroite {
+    align-self: start;
+}
+
+#game {
+    padding-top: 30px;
+}
+
+#game h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =====================
+   BARRE DE VIE
+   ===================== */
+
+#hpBarContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+#hpBarBg {
+    width: 90%;
+    height: 18px;
+    background-color: #1a1408;
+    border: 2px solid #4a3a1a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#hpBarFill {
+    height: 100%;
+    width: 100%;
+    background-color: #2ecc71;
+    border-radius: 10px;
+    transition: width 0.3s ease, background-color 0.5s ease;
+}
+
+/* Pulse pour les boss */
+@keyframes bossPulse {
+    0% {
+        box-shadow: 0 0 0px #e74c3c;
+    }
+
+    50% {
+        box-shadow: 0 0 14px #e74c3c;
+    }
+
+    100% {
+        box-shadow: 0 0 0px #e74c3c;
+    }
+}
+
+#hpBarFill.boss {
+    animation: bossPulse 1.2s infinite;
+}
+
+#hpText {
+    margin: 0;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #d4c4a0;
+}
+
+* {
+    cursor: url('images/sword.svg') 0 32, auto;
+}
+
+#arena {
+    cursor: url('images/sword.svg') 0 32, crosshair;
+}
+
+/* =====================
+   PRESTIGE
+   ===================== */
+
+#prestigeContainer {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+#prestigeToggle {
+    width: 100%;
+    text-align: left;
+    background: #221b0c;
+    border: 1px solid #9b59b6;
+    color: #9b59b6;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: url('images/sword.svg') 0 32, auto;
+    margin: 0;
+}
+
+#prestigeBtn {
+    width: 100%;
+    background: #4a1060;
+    border: 2px solid #9b59b6;
+    color: #e8d5f5;
+    margin: 4px 0;
+}
+
+#prestigeBtn:hover {
+    background: #6a1f8a;
+}
+
+#prestigeList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 20vh;
+    overflow-y: auto;
+}
+
+#prestigeList button {
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    background-color: #1a1408;
+    border-color: #9b59b6;
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+#prestigeList button:hover:not(:disabled) {
+    border-color: #d7bdf7;
+    background-color: #2a1040;
+}
+
+/* =====================
+   STATISTIQUES
+   ===================== */
+
+#statsContainer {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 10px;
+}
+
+#statsToggle {
+    width: 100%;
+    text-align: left;
+    background: #221b0c;
+    border: 1px solid #3498db;
+    color: #3498db;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: url('images/sword.svg') 0 32, auto;
+    margin: 0;
+}
+
+#statsPanel p {
+    font-size: 0.85rem;
+    margin: 4px 0;
+    padding: 4px 8px;
+}
+
+#musiqueBtn {
+    width: 100%;
+    background: #0c2233;
+    border: 1px solid #3498db;
+    color: #3498db;
+    margin-top: 6px;
+}
+
+#musiqueBtn:hover {
+    background: #1a3a50;
+}
+
+/* =====================
+   EFFETS VISUELS
+   ===================== */
+
+/* Nombre de dégâts flottant */
+.degat-flottant {
+    position: absolute;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e74c3c;
+    pointer-events: none;
+    animation: flotterDegat 1s ease-out forwards;
+    text-shadow: 1px 1px 2px black;
+    z-index: 999;
+}
+
+.degat-flottant.critique {
+    font-size: 1.8rem;
+    color: #f1c40f;
+}
+
+.degat-flottant.mort {
+    color: #9b59b6;
+    font-size: 1.5rem;
+}
+
+@keyframes flotterDegat {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-60px);
+    }
+}
+
+/* Flash sur l'ennemi */
+@keyframes flashRouge {
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(3) saturate(0);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+.flash {
+    animation: flashRouge 0.15s ease-out;
+}
+
+/* Explosion mort */
+@keyframes explosion {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(2.5);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.explosion {
+    animation: explosion 0.4s ease-out forwards;
+}
+
+/* Tremblement écran boss */
+@keyframes tremblement {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-5px, 3px);
+    }
+
+    40% {
+        transform: translate(5px, -3px);
+    }
+
+    60% {
+        transform: translate(-3px, 5px);
+    }
+
+    80% {
+        transform: translate(3px, -5px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.tremblement {
+    animation: tremblement 0.4s ease-out;
+}
+
+#arena {
+    position: relative;
+}
+
+/* =====================
+   CRAFTING
+   ===================== */
+
+#craftingContainer {
+    background: #221b0c;
+    border: 1px solid #4a3a1a;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+#craftingToggle {
+    width: 100%;
+    text-align: left;
+    background: #221b0c;
+    border: 1px solid #2ecc71;
+    color: #2ecc71;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    cursor: url('images/sword.svg') 0 32, auto;
+    margin: 0;
+}
+
+#craftingList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-height: 30vh;
+    overflow-y: auto;
+    margin-top: 8px;
+}
