@@ -900,6 +900,11 @@ function setGold(montant) {
 }
 
 
+function setDegat(clic, auto) {
+    clickDmg = clic;
+    autoDmg = auto;
+    updateUI();
+}
 
 
 
